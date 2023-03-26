@@ -13,6 +13,7 @@ public class OrdinaryTariff implements Tariff {
     private static final BigDecimal ORDINARY_PRICE = BigDecimal.valueOf(0.5);
     private static final long FIXED_COUNT_MINUTE = 100;
 
+
     private Duration sumTotalDuration = Duration.ZERO;
 
     @Override
@@ -33,8 +34,8 @@ public class OrdinaryTariff implements Tariff {
     @Override
     public BigDecimal calculateCallPrice(CallDataRecordDto callDataRecordDto) {
 
-        if (callDataRecordDto.getTypeCall().equals(TypeCall.INCOMING)
-                && sumTotalDuration.toMinutes() <= FIXED_COUNT_MINUTE) {
+
+        if (callDataRecordDto.getTypeCall().equals(TypeCall.INCOMING)) {
 
             return BigDecimal.ZERO;
         }
@@ -45,9 +46,15 @@ public class OrdinaryTariff implements Tariff {
         sumTotalDuration = sumTotalDuration.plus(totalDuration);
 
         if (sumTotalDuration.toMinutes() > FIXED_COUNT_MINUTE) {
-            return BigDecimal.valueOf(totalDuration.toMinutes() - FIXED_COUNT_MINUTE)
-                    .multiply(MINUTE_PRICE);
+            var val = FIXED_COUNT_MINUTE - (sumTotalDuration.toMinutes() - totalDuration.toMinutes());
+
+            return ORDINARY_PRICE
+                    .multiply(BigDecimal.valueOf(val))
+                    .add(MINUTE_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes() - val)));
+
         }
+
+
 
         return ORDINARY_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes()));
     }

@@ -36,12 +36,15 @@ public class UnlimitedTariff implements Tariff {
 
         sumTotalDuration = sumTotalDuration.plus(totalDuration);
 
-        if (sumTotalDuration.toMinutes() <= FIXED_COUNT_MINUTE) {
-            return BigDecimal.ZERO;
+        if (sumTotalDuration.toMinutes() > FIXED_COUNT_MINUTE) {
+
+            var val = FIXED_COUNT_MINUTE - (sumTotalDuration.toMinutes() - totalDuration.toMinutes());
+
+            return UNLIMITED_MINUTE_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes() - val));
+
         }
 
-        return BigDecimal.valueOf(sumTotalDuration.toMinutes() - FIXED_COUNT_MINUTE)
-                .multiply(UNLIMITED_MINUTE_PRICE);
+        return BigDecimal.ZERO;
     }
 
 }

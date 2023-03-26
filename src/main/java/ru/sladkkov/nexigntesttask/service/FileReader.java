@@ -22,7 +22,7 @@ public final class FileReader {
     public static List<CallDataRecordDto> getListCdrFromFile() {
 
         List<CallDataRecordDto> callDataRecordDtoList = new ArrayList<>();
-        var path = Paths.get("src/main/resources/cdr.txt");
+        var path = Paths.get("cdr.txt");
         var dateTimeFormatter = new DateTimeFormatterBuilder()
                 .appendPattern("yyyyMMddHHmmss")
                 .toFormatter();

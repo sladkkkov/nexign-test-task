@@ -3,6 +3,7 @@ package ru.sladkkov.nexigntesttask.service;
 import ru.sladkkov.nexigntesttask.dto.CallDataRecordDto;
 import ru.sladkkov.nexigntesttask.enums.TypeCall;
 import ru.sladkkov.nexigntesttask.enums.TypeTariff;
+import ru.sladkkov.nexigntesttask.exception.FileNotFoundByCurrentPathException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,7 +40,7 @@ public final class FileReader {
             });
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileNotFoundByCurrentPathException("Файл не найден", new IOException());
         }
 
         return callDataRecordDtoList;

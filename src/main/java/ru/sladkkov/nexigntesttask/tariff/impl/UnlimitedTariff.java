@@ -1,7 +1,7 @@
-package ru.sladkkov.nexigntesttask.rate.impl;
+package ru.sladkkov.nexigntesttask.tariff.impl;
 
 import ru.sladkkov.nexigntesttask.dto.CallDataRecordDto;
-import ru.sladkkov.nexigntesttask.rate.Tariff;
+import ru.sladkkov.nexigntesttask.tariff.Tariff;
 
 import java.math.BigDecimal;
 import java.time.Duration;

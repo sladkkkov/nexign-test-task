@@ -1,4 +1,4 @@
-package ru.sladkkov.nexigntesttask.rate;
+package ru.sladkkov.nexigntesttask.tariff;
 
 import ru.sladkkov.nexigntesttask.dto.CallDataRecordDto;
 

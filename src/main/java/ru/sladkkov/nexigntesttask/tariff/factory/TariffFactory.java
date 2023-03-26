@@ -1,9 +1,10 @@
-package ru.sladkkov.nexigntesttask.rate;
+package ru.sladkkov.nexigntesttask.tariff.factory;
 
 import ru.sladkkov.nexigntesttask.enums.TypeTariff;
-import ru.sladkkov.nexigntesttask.rate.impl.MinuteTariff;
-import ru.sladkkov.nexigntesttask.rate.impl.OrdinaryTariff;
-import ru.sladkkov.nexigntesttask.rate.impl.UnlimitedTariff;
+import ru.sladkkov.nexigntesttask.tariff.Tariff;
+import ru.sladkkov.nexigntesttask.tariff.impl.MinuteTariff;
+import ru.sladkkov.nexigntesttask.tariff.impl.OrdinaryTariff;
+import ru.sladkkov.nexigntesttask.tariff.impl.UnlimitedTariff;
 
 public final class TariffFactory {
 

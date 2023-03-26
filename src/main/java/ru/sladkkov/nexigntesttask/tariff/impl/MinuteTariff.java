@@ -1,7 +1,7 @@
-package ru.sladkkov.nexigntesttask.rate.impl;
+package ru.sladkkov.nexigntesttask.tariff.impl;
 
 import ru.sladkkov.nexigntesttask.dto.CallDataRecordDto;
-import ru.sladkkov.nexigntesttask.rate.Tariff;
+import ru.sladkkov.nexigntesttask.tariff.Tariff;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -15,20 +15,17 @@ public class MinuteTariff implements Tariff {
     @Override
     public BigDecimal calculateCallPriceForTariffPeriod() {
 
-        return BigDecimal.valueOf(sumTotalDuration.toMinutes())
-                .multiply(MINUTE_PRICE);
+        return BigDecimal.valueOf(sumTotalDuration.toMinutes()).multiply(MINUTE_PRICE);
     }
 
     @Override
     public BigDecimal calculateCallPrice(CallDataRecordDto callDataRecordDto) {
 
-        Duration totalDuration = calculateDurationForOneCall(callDataRecordDto.getDateAndTimeStartCall(),
-                callDataRecordDto.getDateAndTimeEndCall());
+        Duration totalDuration = calculateDurationForOneCall(callDataRecordDto.getDateAndTimeStartCall(), callDataRecordDto.getDateAndTimeEndCall());
 
         sumTotalDuration = sumTotalDuration.plus(totalDuration);
 
-        return BigDecimal.valueOf(totalDuration.toMinutes())
-                .multiply(MINUTE_PRICE);
+        return BigDecimal.valueOf(totalDuration.toMinutes()).multiply(MINUTE_PRICE);
     }
 
 

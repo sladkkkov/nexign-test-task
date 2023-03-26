@@ -1,8 +1,8 @@
 package ru.sladkkov.nexigntesttask.service;
 
 import ru.sladkkov.nexigntesttask.dto.CallDataRecordDto;
-import ru.sladkkov.nexigntesttask.rate.Tariff;
-import ru.sladkkov.nexigntesttask.rate.TariffFactory;
+import ru.sladkkov.nexigntesttask.tariff.Tariff;
+import ru.sladkkov.nexigntesttask.tariff.factory.TariffFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;

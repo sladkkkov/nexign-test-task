@@ -25,19 +25,19 @@ public final class ReportService {
         try (PrintWriter writer = new PrintWriter("reports/" + current.getRate().toString().toLowerCase() + "/" + current.getClientNumber() + ".txt")) {
 
             writer.printf("Tariff index: %s%n", current.getRate().getNumericTypeTariff());
-            writer.print("----------------------------------------------------------------------------\n");
+            writer.print("------------------------------------------------------------------------------\n");
 
             writer.printf("Report for phone number %s:%n", current.getClientNumber());
-            writer.print("----------------------------------------------------------------------------\n");
+            writer.print("------------------------------------------------------------------------------\n");
 
-            writer.println("| Call Type |   Start Time        |     End Time        | Duration | Cost  |");
-            writer.print("----------------------------------------------------------------------------\n");
+            writer.println("| Call Type |   Start Time        |     End Time        | Duration |   Cost  |");
+            writer.print("------------------------------------------------------------------------------\n");
 
 
             var rate = checkRate(callDataRecordDto);
 
             for (CallDataRecordDto dataRecordDto : callDataRecordDto) {
-                writer.printf("|     %s    | %tF %<tT | %tF %<tT | %tT | %5.2f |%n",
+                writer.printf("|     %s    | %tF %<tT | %tF %<tT | %tT |  %6.2f |%n",
                         dataRecordDto.getTypeCall().getNumericNameOfType(),
                         dataRecordDto.getDateAndTimeStartCall(),
                         dataRecordDto.getDateAndTimeEndCall(),
@@ -45,9 +45,9 @@ public final class ReportService {
                         rate.calculateCallPrice(dataRecordDto));
             }
 
-            writer.print("----------------------------------------------------------------------------\n");
-            writer.printf("|                                           Total Cost: |    %5.2f rubles |%n", rate.calculateCallPriceForTariffPeriod());
-            writer.print("----------------------------------------------------------------------------\n");
+            writer.print("------------------------------------------------------------------------------\n");
+            writer.printf("|                                           Total Cost: |     %6.2f rubles  |%n", rate.calculateCallPriceForTariffPeriod());
+            writer.print("------------------------------------------------------------------------------\n");
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

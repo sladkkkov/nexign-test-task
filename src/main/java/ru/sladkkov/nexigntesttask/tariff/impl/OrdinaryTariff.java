@@ -22,10 +22,10 @@ public class OrdinaryTariff implements Tariff {
         var minutes = sumTotalDuration.toMinutes();
 
         if (minutes > FIXED_COUNT_MINUTE) {
-            return BigDecimal.valueOf(FIXED_COUNT_MINUTE)
-                    .multiply(ORDINARY_PRICE)
-                    .add(BigDecimal.valueOf(minutes - FIXED_COUNT_MINUTE))
-                    .multiply(MINUTE_PRICE);
+
+            return ORDINARY_PRICE
+                    .multiply(BigDecimal.valueOf(FIXED_COUNT_MINUTE))
+                    .add(MINUTE_PRICE.multiply(BigDecimal.valueOf(minutes - FIXED_COUNT_MINUTE)));
         }
 
         return ORDINARY_PRICE.multiply(BigDecimal.valueOf(minutes));
@@ -45,13 +45,17 @@ public class OrdinaryTariff implements Tariff {
 
         sumTotalDuration = sumTotalDuration.plus(totalDuration);
 
+        var val = FIXED_COUNT_MINUTE - (sumTotalDuration.toMinutes() - totalDuration.toMinutes());
         if (sumTotalDuration.toMinutes() > FIXED_COUNT_MINUTE) {
-            var val = FIXED_COUNT_MINUTE - (sumTotalDuration.toMinutes() - totalDuration.toMinutes());
 
-            return ORDINARY_PRICE
-                    .multiply(BigDecimal.valueOf(val))
-                    .add(MINUTE_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes() - val)));
+            if (val > 0) {
+                return ORDINARY_PRICE
+                        .multiply(BigDecimal.valueOf(val))
+                        .add(MINUTE_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes() - val)));
 
+            }
+
+            return MINUTE_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes()));
         }
 
         return ORDINARY_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes()));

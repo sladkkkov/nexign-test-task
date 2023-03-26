@@ -11,7 +11,7 @@ public class OrdinaryTariff implements Tariff {
 
     private static final BigDecimal MINUTE_PRICE = BigDecimal.valueOf(1.5);
     private static final BigDecimal ORDINARY_PRICE = BigDecimal.valueOf(0.5);
-    private static final long FIXED_COUNT_MINUTE = 300;
+    private static final long FIXED_COUNT_MINUTE = 100;
 
     private Duration sumTotalDuration = Duration.ZERO;
 

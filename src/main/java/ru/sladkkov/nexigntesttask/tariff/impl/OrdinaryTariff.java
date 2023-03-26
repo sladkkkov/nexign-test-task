@@ -54,8 +54,6 @@ public class OrdinaryTariff implements Tariff {
 
         }
 
-
-
         return ORDINARY_PRICE.multiply(BigDecimal.valueOf(totalDuration.toMinutes()));
     }
 

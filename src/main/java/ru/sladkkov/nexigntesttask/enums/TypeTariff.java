@@ -24,11 +24,11 @@ public enum TypeTariff {
         }
 
         if (numericTypeRate.equals("03")) {
-            return ORDINARY;
+            return MINUTE;
         }
 
         if (numericTypeRate.equals("11")) {
-            return MINUTE;
+            return ORDINARY;
         }
 
         throw new TariffConvertationException("Неопознаное значение: " + numericTypeRate, new IllegalArgumentException());

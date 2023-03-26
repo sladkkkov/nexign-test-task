@@ -4,6 +4,7 @@ import ru.sladkkov.nexigntesttask.dto.CallDataRecordDto;
 import ru.sladkkov.nexigntesttask.rate.Tariff;
 import ru.sladkkov.nexigntesttask.rate.TariffFactory;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.Duration;
@@ -18,6 +19,8 @@ public final class ReportService {
     public static void printReport(List<CallDataRecordDto> callDataRecordDto) {
 
         var current = callDataRecordDto.get(0);
+
+        createDirectory();
 
         try (PrintWriter writer = new PrintWriter("reports/" + current.getRate().toString().toLowerCase() + "/" + current.getClientNumber() + ".txt")) {
 
@@ -49,6 +52,13 @@ public final class ReportService {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static void createDirectory() {
+        new File("reports").mkdirs();
+        new File("reports/minute").mkdirs();
+        new File("reports/ordinary").mkdirs();
+        new File("reports/unlimited").mkdirs();
     }
 
     private static LocalTime getDuration(CallDataRecordDto dataRecordDto) {

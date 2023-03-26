@@ -28,5 +28,4 @@ public class MinuteTariff implements Tariff {
         return BigDecimal.valueOf(totalDuration.toMinutes()).multiply(MINUTE_PRICE);
     }
 
-
 }

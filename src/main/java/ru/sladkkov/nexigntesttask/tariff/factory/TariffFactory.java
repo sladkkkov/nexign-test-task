@@ -1,6 +1,7 @@
 package ru.sladkkov.nexigntesttask.tariff.factory;
 
 import ru.sladkkov.nexigntesttask.enums.TypeTariff;
+import ru.sladkkov.nexigntesttask.exception.TariffConvertationException;
 import ru.sladkkov.nexigntesttask.tariff.Tariff;
 import ru.sladkkov.nexigntesttask.tariff.impl.MinuteTariff;
 import ru.sladkkov.nexigntesttask.tariff.impl.OrdinaryTariff;
@@ -25,6 +26,6 @@ public final class TariffFactory {
             return new OrdinaryTariff();
         }
 
-        throw new IllegalStateException("Unexpected value: " + typeTariff);
+        throw new TariffConvertationException("Ошибка конвертации тарифа", new IllegalArgumentException());
     }
 }

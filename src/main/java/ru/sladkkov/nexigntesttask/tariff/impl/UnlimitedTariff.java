@@ -10,9 +10,7 @@ public class UnlimitedTariff implements Tariff {
 
     private static final BigDecimal FIXED_PRICE = BigDecimal.valueOf(100);
     private static final BigDecimal UNLIMITED_MINUTE_PRICE = BigDecimal.ONE;
-
-    private static final long FIXED_COUNT_MINUTE = 50;
-
+    private static final long FIXED_COUNT_MINUTE = 300;
     private Duration sumTotalDuration = Duration.ZERO;
 
     @Override
@@ -45,6 +43,5 @@ public class UnlimitedTariff implements Tariff {
         return BigDecimal.valueOf(sumTotalDuration.toMinutes() - FIXED_COUNT_MINUTE)
                 .multiply(UNLIMITED_MINUTE_PRICE);
     }
-
 
 }

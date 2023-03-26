@@ -16,7 +16,6 @@ public interface Tariff {
 
     BigDecimal calculateCallPrice(CallDataRecordDto callDataRecordDto);
 
-
     default Map<String, List<CallDataRecordDto>> getMapGroupingByClientNumber(
             List<CallDataRecordDto> callDataRecordDtoList) {
 
@@ -30,6 +29,5 @@ public interface Tariff {
         return Duration.between(dateAndTimeStartCall,
                 dateAndTimeEndCall).truncatedTo(ChronoUnit.MINUTES).plusMinutes(1);
     }
-
 
 }
